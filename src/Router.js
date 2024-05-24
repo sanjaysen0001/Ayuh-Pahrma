@@ -57,6 +57,7 @@ const DispatchedOrders = lazy(() =>
 const Medicalinvent=lazy(()=>import('./Pharmapages/medicalinvent'))
 const Category=lazy(()=>import('./Pharmapages/Category.js'))
 const Subcategory=lazy(()=>import('./Pharmapages/Subcategory.js'))
+const Viewsubcategory=lazy(()=>import('./Pharmapages/Viewsubcategory.js'))
 const Addsubcategory=lazy(()=>import('./Pharmapages/Addsubcategory.js'))
 const Deliverreport=lazy(()=>import('./Pharmapages/Orderlist.js'))
 const Addmedicine=lazy(()=>import('./Pharmapages/Addmedicine'))
@@ -273,6 +274,7 @@ const Testlistadd=lazy(()=>import('./Pharmapages/Testadd.js'))
 const EditProduct = lazy(() =>
   import("./views/apps/productmanager/product/EditProduct")
 );
+const Editsubcategory=lazy(()=>import('./views/apps/productmanager/product/Editsubcategory.js'))
 const ViewProduct = lazy(() =>
   import("./views/apps/productmanager/product/ViewProduct")
 );
@@ -740,6 +742,7 @@ class AppRouter extends React.Component {
             {/* <AppRoute exact={true} path="/" component={Dashboard} /> */}
             <AppRoute path='/Category' component={Category}/>
             <AppRoute path='/Subcategory' component={Subcategory}/>
+            <AppRoute path="/Viewsubcategory/:id" component={Viewsubcategory}/>
             <AppRoute path="/Add-sub-category" component={Addsubcategory}/>
             <AppRoute path='/Pharmapages/medicalinvent' component={Medicalinvent}/>
             <AppRoute path='/Pharmapages/ActivityTimeline' component={Activity}/>
@@ -953,6 +956,7 @@ class AppRouter extends React.Component {
               path="/Edit-Category/:id"
               component={EditProduct}
             />
+            <AppRoute component={Editsubcategory} path="/Edit-sub-category/:id"/>
             <AppRoute
               path="/viewCategory/:id"
               component={ViewProduct}

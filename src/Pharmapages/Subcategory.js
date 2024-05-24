@@ -159,8 +159,7 @@ class Subcategory extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              {/*
-              <Route
+                  <Route
                 render={({ history }) => (
                   <Eye
                     className="mr-50"
@@ -168,13 +167,13 @@ class Subcategory extends React.Component {
                     color="green"
                     onClick={() =>
                       history.push(
-                        `/app/productmanager/product/viewProduct/${params.data._id}`
+                        `/Viewsubcategory/${params.data._id}`
                       )
                     }
                   />
                 )}
               />
-               */}
+             
               <Route
                 render={({ history }) => (
                   <Edit
@@ -215,10 +214,8 @@ class Subcategory extends React.Component {
     }).then((result) => {
       console.log(result);
      
-     
-        // User confirmed, proceed with deletion
-        axiosConfig
-          .delete(`/category/delete-sub-category/${_id}`)
+           axiosConfig
+          .delete(`/pharma-category/delete-sub-category/${_id}`)
           .then((response) => {
             console.log(response.data.message);
             window.location.reload();
