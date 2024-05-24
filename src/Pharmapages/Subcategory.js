@@ -1,0 +1,391 @@
+import React from "react";
+import {
+  Card,
+  CardBody,
+  Input,
+  Row,
+  Col,
+  CustomInput,
+  Button,
+  UncontrolledDropdown,
+  DropdownMenu,
+  DropdownItem,
+  DropdownToggle,
+} from "reactstrap";
+import axiosConfig from "../axiosConfig";
+
+import ReactHtmlParser from "react-html-parser";
+import { ContextLayout } from "../utility/context/Layout";
+import { AgGridReact } from "ag-grid-react";
+import { Eye, Edit, Trash2, ChevronDown } from "react-feather";
+//import classnames from "classnames";
+import "../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import "../assets/scss/pages/users.scss";
+import { Route } from "react-router-dom";
+import Breadcrumbs from "../components/@vuexy/breadCrumbs/BreadCrumb";
+import Swal from "sweetalert2";
+
+class Subcategory extends React.Component {
+  state = {
+    categoryId: "",
+    rowData: [],
+    data: [],
+    paginationPageSize: 20,
+    currenPageSize: "",
+    getPageSize: "",
+    defaultColDef: {
+      sortable: true,
+      editable: true,
+      resizable: true,
+      suppressMenu: true,
+    },
+    columnDefs: [
+      {
+        headerName: "S.No",
+        valueGetter: "node.rowIndex + 1",
+        field: "node.rowIndex + 1",
+        width: 120,
+        filter: true,
+        // checkboxSelection: true,
+        // headerCheckboxSelectionFilteredOnly: true,
+        // headerCheckboxSelection: true,
+      },
+
+      // {
+      //   headerName: "Product Name",
+      //   field: "productname",
+      //   filter: true,
+      //   width: 120,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div>
+      //         <span>{params.data.productname}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
+      {
+        headerName: "Category Name",
+        field: "categoryname",
+        filter: true,
+        width: 370,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.category}</span>
+            </div>
+          );
+        },
+      },
+
+      {
+        headerName: "Sub-Category Name",
+        field: "subcategoryname",
+        filter: false,
+        width: 370,
+        setColumnVisible: false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.subCategoryName}</span>
+            </div>
+          );
+        },
+      },
+
+      // {
+      //   headerName: "Selling Price",
+      //   field: "price",
+      //   filter: true,
+      //   width: 120,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div>
+      //         <span>{params.data.price}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
+      // {
+      //   headerName: "Description",
+      //   field: "desc",
+      //   filter: true,
+      //   width: 200,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div>
+      //         <span>{ReactHtmlParser(params.data.desc)}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
+      // {
+      //   headerName: "Limit",
+      //   field: "limit",
+      //   filter: true,
+      //   width: 180,
+      //   cellRendererFramework: (params) => {
+      //     console.log(params);
+      //     return (
+      //       <div>
+      //         <span>{params.data?.limit}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
+
+      // {
+      //   headerName: "Status",
+      //   field: "status",
+      //   filter: true,
+      //   width: 120,
+      //   cellRendererFramework: (params) => {
+      //     return params.value === "Active" ? (
+      //       <div className="badge badge-pill badge-success">
+      //         {params.data.status}
+      //       </div>
+      //     ) : params.value === "Deactive" ? (
+      //       <div className="badge badge-pill badge-warning">
+      //         {params.data.status}
+      //       </div>
+      //     ) : null;
+      //   },
+      // },
+
+      {
+        headerName: "Action",
+        field: "sortorder",
+        width: 120,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="actions cursor-pointer">
+              {/*
+              <Route
+                render={({ history }) => (
+                  <Eye
+                    className="mr-50"
+                    size="25px"
+                    color="green"
+                    onClick={() =>
+                      history.push(
+                        `/app/productmanager/product/viewProduct/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              />
+               */}
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(`/Edit-sub-category/${params.data._id}`)
+                    }
+                  />
+                )}
+              />
+              <Trash2
+                className="mr-50"
+                size="25px"
+                color="red"
+                onClick={() => {
+                  this.runthisfunction(params.data._id);
+                }}
+              />
+            </div>
+          );
+        },
+      },
+    ],
+  };
+  runthisfunction(_id) {
+    console.log(_id);
+    Swal.fire({
+      title: "Do You Want To Delete Permanently?",
+      text: "This item will be deleted immediately",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      console.log(result);
+     
+     
+        // User confirmed, proceed with deletion
+        axiosConfig
+          .delete(`/category/delete-sub-category/${_id}`)
+          .then((response) => {
+            console.log(response.data.message);
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+     
+    });
+  }
+
+  async componentDidMount() {
+    await axiosConfig.get(`/pharma-category/view-sub-category`).then((response) => {
+      let rowData = response?.data?.SubCategory;
+      console.log(rowData);
+      this.setState({ rowData });
+    });
+  }
+
+  onGridReady = (params) => {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.setState({
+      currenPageSize: this.gridApi.paginationGetCurrentPage() + 1,
+      getPageSize: this.gridApi.paginationGetPageSize(),
+      totalPages: this.gridApi.paginationGetTotalPages(),
+    });
+  };
+  updateSearchQuery = (val) => {
+    this.gridApi.setQuickFilter(val);
+  };
+  filterSize = (val) => {
+    if (this.gridApi) {
+      this.gridApi.paginationSetPageSize(Number(val));
+      this.setState({
+        currenPageSize: val,
+        getPageSize: val,
+      });
+    }
+  };
+  render() {
+    const { rowData, columnDefs, defaultColDef } = this.state;
+    return (
+      console.log(rowData),
+      ( 
+        <div>
+          <h2>Sub-Category</h2>
+
+          <Row className="app-user-list">
+            <Col sm="12"></Col>
+            <Col sm="12">
+              <Card>
+                <Row className="m-2">
+                  <Col>
+                    <h1 sm="6" className="float-left"></h1>
+                  </Col>
+                  <Col>
+                    <Route
+                      render={({ history }) => (
+                        <Button
+                          className=" btn btn-success float-right"
+                          onClick={() => history.push("/Add-sub-category")}
+                        >
+                          Add
+                        </Button>
+                      )}
+                    />
+                  </Col>
+                </Row>
+                <CardBody>
+                  {this.state.rowData === null ? null : (
+                    <div className="ag-theme-material w-100 my-2 ag-grid-table">
+                      <div className="d-flex flex-wrap justify-content-between align-items-center">
+                        <div className="mb-1">
+                          <UncontrolledDropdown className="p-1 ag-dropdown">
+                            <DropdownToggle tag="div">
+                              {this.gridApi
+                                ? this.state.currenPageSize
+                                : "" * this.state.getPageSize -
+                                  (this.state.getPageSize - 1)}{" "}
+                              -{" "}
+                              {this.state.rowData.length -
+                                this.state.currenPageSize *
+                                  this.state.getPageSize >
+                              0
+                                ? this.state.currenPageSize *
+                                  this.state.getPageSize
+                                : this.state.rowData.length}{" "}
+                              of {this.state.rowData.length}
+                              <ChevronDown className="ml-50" size={15} />
+                            </DropdownToggle>
+                            <DropdownMenu right>
+                              <DropdownItem
+                                tag="div"
+                                onClick={() => this.filterSize(20)}
+                              >
+                                20
+                              </DropdownItem>
+                              <DropdownItem
+                                tag="div"
+                                onClick={() => this.filterSize(50)}
+                              >
+                                50
+                              </DropdownItem>
+                              <DropdownItem
+                                tag="div"
+                                onClick={() => this.filterSize(100)}
+                              >
+                                100
+                              </DropdownItem>
+                              <DropdownItem
+                                tag="div"
+                                onClick={() => this.filterSize(134)}
+                              >
+                                134
+                              </DropdownItem>
+                            </DropdownMenu>
+                          </UncontrolledDropdown>
+                        </div>
+                        <div className="d-flex flex-wrap justify-content-between mb-1">
+                          <div className="table-input mr-1">
+                            <Input
+                              placeholder="search..."
+                              onChange={(e) =>
+                                this.updateSearchQuery(e.target.value)
+                              }
+                              value={this.state.value}
+                            />
+                          </div>
+                          <div className="export-btn">
+                            <Button.Ripple
+                              color="primary"
+                              onClick={() => this.gridApi.exportDataAsCsv()}
+                            >
+                              Export as CSV
+                            </Button.Ripple>
+                          </div>
+                        </div>
+                      </div>
+                      <ContextLayout.Consumer>
+                        {(context) => (
+                          <AgGridReact
+                            gridOptions={{}}
+                            rowSelection="multiple"
+                            defaultColDef={defaultColDef}
+                            columnDefs={columnDefs}
+                            rowData={rowData}
+                            onGridReady={this.onGridReady}
+                            colResizeDefault={"shift"}
+                            animateRows={true}
+                            floatingFilter={false}
+                            pagination={true}
+                            paginationPageSize={this.state.paginationPageSize}
+                            pivotPanelShow="always"
+                            enableRtl={context.state.direction === "rtl"}
+                          />
+                        )}
+                      </ContextLayout.Consumer>
+                    </div>
+                  )}
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </div>
+      )
+    );
+  }
+}
+export default Subcategory;
