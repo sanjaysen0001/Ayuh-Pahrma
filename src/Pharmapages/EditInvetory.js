@@ -12,12 +12,13 @@ import {
   Button,
   CustomInput,
 } from "reactstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import axiosConfig from "../axiosConfig";
 import swal from "sweetalert";
-const MedicineForm = () => {
+const EditInvetory = () => {
   const history = useHistory();
-  const [categoryList, setCategoryList] = useState([]);
+  const Params = useParams();
+  const [inventoryview, setInventoryview] = useState("");
   const [availableStock, setAvailableStock] = useState("");
   const [requiredData, setRequiredData] = useState("");
   const [medicineName, setmedicineName] = useState("");
@@ -32,10 +33,13 @@ const MedicineForm = () => {
     history.goBack();
   };
   useEffect(() => {
-    axiosConfig.get(`/medicine/fetchall`).then((response) => {
-      console.log(response.data.data);
-      setCategoryList(response.data.data);
-    });
+    console.log(Params.id);
+    axiosConfig
+      .get(`/medicalinventery/medicalfind/${Params.id}`)
+      .then((response) => {
+        console.log(response.data.data);
+        setInventoryview(response.data.data);
+      });
   }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,10 +53,10 @@ const MedicineForm = () => {
   };
   const handleMedicineChange = (id) => {
     console.log(id);
-    const selected = categoryList.filter((item) => item._id === id);
-    console.log(selected[0].medicinetype);
-    setmedicineName(selected[0].medicinetype);
-    setAvailableStock(selected[0].quantity);
+    // const selected = categoryList.filter((item) => item._id === id);
+    // console.log(selected[0].medicinetype);
+    // setmedicineName(selected[0].medicinetype);
+    // setAvailableStock(selected[0].quantity);
   };
 
   const handleSubmit = (e) => {
@@ -79,7 +83,7 @@ const MedicineForm = () => {
     <div>
       <Card>
         <CardHeader>
-          <h1>Inventery Medicine Form</h1>
+          <h1>Edit Inventery Medicine Form</h1>
           <Button color="danger" onClick={handleGoBack}>
             Back
           </Button>
@@ -93,15 +97,16 @@ const MedicineForm = () => {
                   <CustomInput
                     type="select"
                     name="category1"
-                    // value={}
-                    onChange={(e) => handleMedicineChange(e.target.value)}
+                    // disabled
+                    value={inventoryview.medicinetype}
+                    // onChange={(e) => handleMedicineChange(e.target.value)}
                   >
-                    <option>Select Title</option>
-                    {categoryList?.map((allCategory1) => (
+                    <option>{inventoryview.medicinetype}</option>
+                    {/* {categoryList?.map((allCategory1) => (
                       <option value={allCategory1?._id} key={allCategory1?._id}>
                         {allCategory1?.medicinetype}
                       </option>
-                    ))}
+                    ))} */}
                   </CustomInput>
                 </FormGroup>
               </Col>
@@ -110,11 +115,11 @@ const MedicineForm = () => {
                   <Label for="availableStock">Available Stock</Label>
                   <Input
                     type="number"
-                    disabled
+                    // disabled
                     name="availableStock"
                     id="availableStock"
-                    value={availableStock}
-                    // onChange={handleChange}
+                    value={inventoryview.availableStock}
+                    onChange={handleChange}
                   />
                 </FormGroup>
               </Col>
@@ -124,14 +129,13 @@ const MedicineForm = () => {
                   <Input
                     type="number"
                     name="capacityStock"
+                    disabled
                     id="capacityStock"
-                    value={data.capacityStock}
+                    value={inventoryview.capacityStock}
                     onChange={handleChange}
                   />
                 </FormGroup>
               </Col>
-              {/* </Row>
-            <Row form> */}
               <Col md={6}>
                 <FormGroup>
                   <Label for="requiredStock">Required Stock</Label>
@@ -140,7 +144,7 @@ const MedicineForm = () => {
                     name="requiredStock"
                     id="requiredStock"
                     disabled
-                    value={requiredData}
+                    value={inventoryview.requiredStock}
                     onChange={handleChange}
                   />
                 </FormGroup>
@@ -156,4 +160,4 @@ const MedicineForm = () => {
   );
 };
 
-export default MedicineForm;
+export default EditInvetory;

@@ -38,9 +38,7 @@ const Addpages = lazy(() => import("./views/apps/Addpages/Addpages"));
 const AstrologerEarnReport = lazy(() =>
   import("./views/apps/packagemanager/AstrologerEarnReport")
 );
-const Adminreport = lazy(() =>
-  import("./views/apps/report/AdminEarning")
-);
+const Adminreport = lazy(() => import("./views/apps/report/AdminEarning"));
 // Route-based code splitting
 // const Dashboard = lazy(() =>
 //   import("./Pharmapages/Dashboard.js")
@@ -54,21 +52,28 @@ const Activity = lazy(() =>
 const DispatchedOrders = lazy(() =>
   import("./views/dashboard/analytics/DispatchedOrders.js")
 );
-const Medicalinvent=lazy(()=>import('./Pharmapages/medicalinvent'))
-const Category=lazy(()=>import('./Pharmapages/Category.js'))
-const Subcategory=lazy(()=>import('./Pharmapages/Subcategory.js'))
-const Viewsubcategory=lazy(()=>import('./Pharmapages/Viewsubcategory.js'))
-const Addsubcategory=lazy(()=>import('./Pharmapages/Addsubcategory.js'))
-const Deliverreport=lazy(()=>import('./Pharmapages/Orderlist.js'))
-const Addmedicine=lazy(()=>import('./Pharmapages/Addmedicine'))
-const Editprofile=lazy(()=>import('./Pharmapages/Editprofile.js'))
-const Pendingreportlist=lazy(()=>import('./Pharmapages/MedicineList.js'))
-const Test=lazy(()=>import('./Pharmapages/Test.js'))
-const Testadd=lazy(()=>import('./Pharmapages/Testadd.js'))
-const Testaddlist=lazy(()=>import('./Pharmapages/Testadd.js'))
+const Medicalinvent = lazy(() => import("./Pharmapages/medicalinvent"));
+const ViewInventory = lazy(() => import("./Pharmapages/ViewInventory"));
+const EditInvetory = lazy(() => import("./Pharmapages/EditInvetory"));
+const Category = lazy(() => import("./Pharmapages/Category.js"));
+const Subcategory = lazy(() => import("./Pharmapages/Subcategory.js"));
+const Viewsubcategory = lazy(() => import("./Pharmapages/Viewsubcategory.js"));
+const Addsubcategory = lazy(() => import("./Pharmapages/Addsubcategory.js"));
+const Deliverreport = lazy(() => import("./Pharmapages/Orderlist.js"));
+const Addmedicine = lazy(() => import("./Pharmapages/Addmedicine"));
+const Editprofile = lazy(() => import("./Pharmapages/Editprofile.js"));
+const MedicineList = lazy(() => import("./Pharmapages/MedicineList.js"));
+const ViewMedicine = lazy(() =>
+  import("./Pharmapages/medicine/ViewMedicine.js")
+);
+const EditMedicine = lazy(() =>
+  import("./Pharmapages/medicine/EditMedicine.js")
+);
+const Test = lazy(() => import("./Pharmapages/Test.js"));
+const Testadd = lazy(() => import("./Pharmapages/Testadd.js"));
+const Testaddlist = lazy(() => import("./Pharmapages/Testadd.js"));
 
-
-const Inventpharmaform=lazy(()=>import('./Pharmapages/inventmedicalform'))
+const Inventpharmaform = lazy(() => import("./Pharmapages/inventmedicalform"));
 const ecommerceDashboard = lazy(() =>
   import("./views/dashboard/ecommerce/EcommerceDashboard")
 );
@@ -80,14 +85,15 @@ const productDetail = lazy(() =>
 const shop = lazy(() => import("./views/apps/ecommerce/shop/Shop"));
 
 const UserList = lazy(() => import("./views/apps/user/UserList"));
-const diagnosticlist =lazy(()=>import("./views/apps/user/Diagnosticlist.js"))
+const diagnosticlist = lazy(() =>
+  import("./views/apps/user/Diagnosticlist.js")
+);
 const pharmalist = lazy(() => import("./views/apps/user/Pharmalist.js"));
 const AddUser = lazy(() => import("./views/apps/user/AddUser"));
 const ViewUser = lazy(() => import("./views/apps/user/ViewUser"));
-const Editdeliver=lazy(()=>import("./views/apps/user/Editdeliver.js"));
+const Editdeliver = lazy(() => import("./views/apps/user/Editdeliver.js"));
 const EditUser = lazy(() => import("./views/apps/user/EditUser"));
-const Edittestlist=lazy(()=>import('./views/apps/user/Edittestlist.js'))
-
+const Edittestlist = lazy(() => import("./views/apps/user/Edittestlist.js"));
 
 // Report //
 const CallDetails = lazy(() => import("./views/apps/report/CallDetails"));
@@ -104,10 +110,18 @@ const AddEvent = lazy(() => import("./views/apps/event/addEvent/AddEvent"));
 const BookEventList = lazy(() =>
   import("./views/apps/event/bookEvent/BookEventList")
 );
-const Pendinglist=lazy(()=>import('./views/apps/event/bookEvent/Pendinglist.js'))
-const Acceptlist=lazy(()=>import('./views/apps/event/bookEvent/Acceptlist.js'))
-const Completedlist=lazy(()=>import('./views/apps/event/bookEvent/Completedlist.js'))
-const Cancelledlist=lazy(()=>import('./views/apps/event/bookEvent/Cancelledlist.js'))
+const Pendinglist = lazy(() =>
+  import("./views/apps/event/bookEvent/Pendinglist.js")
+);
+const Acceptlist = lazy(() =>
+  import("./views/apps/event/bookEvent/Acceptlist.js")
+);
+const Completedlist = lazy(() =>
+  import("./views/apps/event/bookEvent/Completedlist.js")
+);
+const Cancelledlist = lazy(() =>
+  import("./views/apps/event/bookEvent/Cancelledlist.js")
+);
 const BookedpoojaList = lazy(() =>
   import("./views/apps/event/bookEvent/Bookedpoojalist")
 );
@@ -141,10 +155,18 @@ const CustomWallet = lazy(() => import("./views/apps/wallet/CustomWallet"));
 const WithdrawRequest = lazy(() =>
   import("./views/apps/Withdraw/WithdrawRequest")
 );
-const Userwithdraw=lazy(()=>import("./views/apps/Withdraw/Userwithdraw.js"))
-const Doctorwithdraw=lazy(()=>import('./views/apps/Withdraw/Doctorwithdraw.js'))
-const Pharmawithdraw=lazy(()=>import('./views/apps/Withdraw/Pharmawithdraw.js'))
-const Diagnosticswithdraw=lazy(()=>import('./views/apps/Withdraw/Diagnosticwithdraw.js'))
+const Userwithdraw = lazy(() =>
+  import("./views/apps/Withdraw/Userwithdraw.js")
+);
+const Doctorwithdraw = lazy(() =>
+  import("./views/apps/Withdraw/Doctorwithdraw.js")
+);
+const Pharmawithdraw = lazy(() =>
+  import("./views/apps/Withdraw/Pharmawithdraw.js")
+);
+const Diagnosticswithdraw = lazy(() =>
+  import("./views/apps/Withdraw/Diagnosticwithdraw.js")
+);
 //Transaction history//
 const TransactionHistory = lazy(() =>
   import("./views/apps/transaction/TransactionHistory")
@@ -179,7 +201,9 @@ const TodayCallHistory = lazy(() =>
 const CompleteCall = lazy(() =>
   import("./views/apps/callmanagement/CompleteCall")
 );
-const Callhistorymanagement=lazy(()=>import('./views/apps/Businessmanagement/Callshistorymanagement.js'))
+const Callhistorymanagement = lazy(() =>
+  import("./views/apps/Businessmanagement/Callshistorymanagement.js")
+);
 const CallHistroy = lazy(() =>
   import("./views/apps/callmanagement/CallHistory")
 );
@@ -216,9 +240,15 @@ const PharmaEarningList = lazy(() =>
 
 // rating and review
 const RatingList = lazy(() => import("./views/apps/reviewrating/RatingList"));
-const doctorrating=lazy(()=>import("./views/apps/reviewrating/Doctorrating.js"));
-const pharmarating=lazy(()=>import("./views/apps/reviewrating/Pharmarating.js"));
-const diagnostingsrating=lazy(()=>import("./views/apps/reviewrating/Diagnosticsrating.js"));
+const doctorrating = lazy(() =>
+  import("./views/apps/reviewrating/Doctorrating.js")
+);
+const pharmarating = lazy(() =>
+  import("./views/apps/reviewrating/Pharmarating.js")
+);
+const diagnostingsrating = lazy(() =>
+  import("./views/apps/reviewrating/Diagnosticsrating.js")
+);
 const RatingEdit = lazy(() => import("./views/apps/reviewrating/RatingEdit"));
 
 // Package management
@@ -261,20 +291,34 @@ const PackageList = lazy(() => import("./views/apps/poojapackage/PackageList"));
 const ProductList = lazy(() =>
   import("./views/apps/productmanager/product/ProductList")
 );
-const Listcategoryadd=lazy(()=>import('./views/apps/productmanager/product/Listcategoryadd.js'));
-const Pharmacategorylist=lazy(()=>import('./views/apps/productmanager/product/Pharmacategorylist.js'))
-const Medicinelist=lazy(()=>import('./views/apps/productmanager/product/Medicinelist.js'))
-const PharmaOrderlist=lazy(()=>import('./views/apps/productmanager/product/PharmaOrderList.js'))
-const Pharmamedicinlist=lazy(()=>import('./views/apps/productmanager/product/Pharmamedicinlist.js'))
+const Listcategoryadd = lazy(() =>
+  import("./views/apps/productmanager/product/Listcategoryadd.js")
+);
+const Pharmacategorylist = lazy(() =>
+  import("./views/apps/productmanager/product/Pharmacategorylist.js")
+);
+
+// const Medicinelist = lazy(() =>
+//   import("./views/apps/productmanager/product/Medicinelist.js")
+// );
+
+const PharmaOrderlist = lazy(() =>
+  import("./views/apps/productmanager/product/PharmaOrderList.js")
+);
+const Pharmamedicinlist = lazy(() =>
+  import("./views/apps/productmanager/product/Pharmamedicinlist.js")
+);
 const AddProduct = lazy(() =>
   import("./views/apps/productmanager/product/AddProduct")
 );
-const Testlistadd=lazy(()=>import('./Pharmapages/Testadd.js'))
+const Testlistadd = lazy(() => import("./Pharmapages/Testadd.js"));
 
 const EditProduct = lazy(() =>
   import("./views/apps/productmanager/product/EditProduct")
 );
-const Editsubcategory=lazy(()=>import('./views/apps/productmanager/product/Editsubcategory.js'))
+const Editsubcategory = lazy(() =>
+  import("./views/apps/productmanager/product/Editsubcategory.js")
+);
 const ViewProduct = lazy(() =>
   import("./views/apps/productmanager/product/ViewProduct")
 );
@@ -332,16 +376,14 @@ const AstrologerProduct = lazy(() =>
   import("./views/apps/productmanager/AstrologerProduct")
 );
 
-const CategoryList = lazy(() =>
-  import("./Pharmapages/Addcategorylist.js")
-);
+const CategoryList = lazy(() => import("./Pharmapages/Addcategorylist.js"));
 
 const SubcategoryList = lazy(() =>
   import("./views/apps/productmanager/category/Subcategorylist.js")
 );
-const diseaselist=lazy(()=>
-import("./views/apps/productmanager/category/Diseaselist.js")
-)
+const diseaselist = lazy(() =>
+  import("./views/apps/productmanager/category/Diseaselist.js")
+);
 const AddCategory = lazy(() =>
   import("./views/apps/productmanager/category/AddCategory")
 );
@@ -443,9 +485,15 @@ const ViewBlog = lazy(() => import("./views/apps/blogmngment/blog/ViewBlog"));
 const BlogCateList = lazy(() =>
   import("./views/apps/blogmngment/blogcategory/BlogCateList")
 );
-const Blogcategorylist=lazy(()=>import("./views/apps/blogmngment/blogcategory/Blogcategorylist.js"));
-const Addblogcategorylist=lazy(()=>import("./views/apps/blogmngment/blogcategory/Addblogcategorylist.js"));
-const Commentlist=lazy(()=>import("./views/apps/blogmngment/blogcategory/Commentlist.js"));
+const Blogcategorylist = lazy(() =>
+  import("./views/apps/blogmngment/blogcategory/Blogcategorylist.js")
+);
+const Addblogcategorylist = lazy(() =>
+  import("./views/apps/blogmngment/blogcategory/Addblogcategorylist.js")
+);
+const Commentlist = lazy(() =>
+  import("./views/apps/blogmngment/blogcategory/Commentlist.js")
+);
 const AddBlogCate = lazy(() =>
   import("./views/apps/blogmngment/blogcategory/AddBlogCate")
 );
@@ -670,7 +718,6 @@ const DrsuggestCategoryList = lazy(() =>
   import("./views/apps/productmanager/category/Drsuggestcategory")
 );
 
-
 const Drsubsuggest = lazy(() =>
   import("./views/apps/productmanager/category/Dr.subsuggest")
 );
@@ -726,8 +773,6 @@ class AppRouter extends React.Component {
     console.log("token data", data);
     sessionStorage.clear();
     if (data === undefined || data === null) {
-
-
       window.location.replace("/#/pages/login");
     }
   }
@@ -740,35 +785,83 @@ class AppRouter extends React.Component {
           <Switch>
             {/*<AppRoute exact={true} path="/" component={home} fullLayout /> */}
             {/* <AppRoute exact={true} path="/" component={Dashboard} /> */}
-            <AppRoute path='/Category' component={Category}/>
-            <AppRoute path='/Subcategory' component={Subcategory}/>
-            <AppRoute path="/Viewsubcategory/:id" component={Viewsubcategory}/>
-            <AppRoute path="/Add-sub-category" component={Addsubcategory}/>
-            <AppRoute path='/Pharmapages/medicalinvent' component={Medicalinvent}/>
-            <AppRoute path='/Pharmapages/ActivityTimeline' component={Activity}/>
-            <AppRoute path='/apps/Pharmapages/Orderlist' component={Deliverreport}/>
-            <AppRoute path='/apps/Pharmapages/Addmedicine' component={Addmedicine}/>
-            <AppRoute path='/Pharmapages/DispatchedOrders' component={DispatchedOrders}/>
-            <AppRoute path='/Editprofile' component={Editprofile}/>
-            <AppRoute path='/apps/Pharmapages/MedicineList' component={Pendingreportlist}/>
-            <AppRoute path='/Test' component={Test}/>
+            <AppRoute path="/Category" component={Category} />
+            <AppRoute path="/Subcategory" component={Subcategory} />
+            <AppRoute path="/Viewsubcategory/:id" component={Viewsubcategory} />
+            <AppRoute path="/Add-sub-category" component={Addsubcategory} />
+            <AppRoute
+              path="/Pharmapages/medicalinvent"
+              component={Medicalinvent}
+            />
+            <AppRoute
+              path="/Pharmapages/ViewInventory/:id"
+              component={ViewInventory}
+            />
+            <AppRoute
+              path="/Pharmapages/EditInvetory/:id"
+              component={EditInvetory}
+            />
+            <AppRoute
+              path="/Pharmapages/ActivityTimeline"
+              component={Activity}
+            />
+            <AppRoute
+              path="/apps/Pharmapages/Orderlist"
+              component={Deliverreport}
+            />
+            <AppRoute
+              path="/apps/Pharmapages/Addmedicine"
+              component={Addmedicine}
+            />
+            <AppRoute
+              path="/Pharmapages/DispatchedOrders"
+              component={DispatchedOrders}
+            />
+            <AppRoute path="/Editprofile" component={Editprofile} />
+            <AppRoute
+              path="/apps/Pharmapages/MedicineList"
+              component={MedicineList}
+            />
+            <AppRoute
+              path="/apps/PharmaManagement/ViewMedicine/:id"
+              component={ViewMedicine}
+            />
+            <AppRoute
+              path="/apps/PharmaManagement/EditMedicine/:id"
+              component={EditMedicine}
+            />
+            <AppRoute path="/Test" component={Test} />
             <AppRoute exact={true} path="/" component={analyticsDashboard} />
-            <AppRoute path="/Add-list" component={Testlistadd}/>
-            <AppRoute path='/Pharmapages/inventmedicalform' component={Inventpharmaform}/>
+            <AppRoute path="/Add-list" component={Testlistadd} />
+            <AppRoute
+              path="/Pharmapages/inventmedicalform"
+              component={Inventpharmaform}
+            />
             <AppRoute
               exact={true}
               path="/ecommerce-dashboard"
               component={ecommerceDashboard}
             />
-            <AppRoute path='/userList/diagnostic-list' component={diagnosticlist}/>
-            <AppRoute path='/userList/pharma-list' component={pharmalist}/>
+            <AppRoute
+              path="/userList/diagnostic-list"
+              component={diagnosticlist}
+            />
+            <AppRoute path="/userList/pharma-list" component={pharmalist} />
             <AppRoute path="/userList/patient-list" component={UserList} />
             <AppRoute path="/app/user/addUser" component={AddUser} />
-            <AppRoute path="/Pending-report-rist/Edit-report/:id" component={EditUser} />
-            <AppRoute path="/Edit-test-list" component={Edittestlist}/>
-
-            <AppRoute path="/Deliver-report-rist/View-report/:id" component={ViewUser} />
-            <AppRoute path='/Deliver-report-rist/Edit-report/:id' component={Editdeliver}/>
+            <AppRoute
+              path="/Pending-report-rist/Edit-report/:id"
+              component={EditUser}
+            />
+            <AppRoute path="/Edit-test-list" component={Edittestlist} />
+            <AppRoute
+              path="/Deliver-report-rist/View-report/:id"
+              component={ViewUser}
+            />
+            <AppRoute
+              path="/Deliver-report-rist/Edit-report/:id"
+              component={Editdeliver}
+            />
             <AppRoute path="/app/user/addpackage" component={Addpackage} />
             {/* Astrologer dashboard list */}
             <AppRoute
@@ -807,10 +900,19 @@ class AppRouter extends React.Component {
               path="/app/event/bookEvent/bookEventList"
               component={BookEventList}
             />
-            <AppRoute path='/appointments/Pending-list' component={Pendinglist}/>
-            <AppRoute path='/appointments/Accept-list' component={Acceptlist}/>
-            <AppRoute path='/appointments/Completed-list' component={Completedlist}/>
-            <AppRoute path='/appointments/Cancelled-list' component={Cancelledlist}/>
+            <AppRoute
+              path="/appointments/Pending-list"
+              component={Pendinglist}
+            />
+            <AppRoute path="/appointments/Accept-list" component={Acceptlist} />
+            <AppRoute
+              path="/appointments/Completed-list"
+              component={Completedlist}
+            />
+            <AppRoute
+              path="/appointments/Cancelled-list"
+              component={Cancelledlist}
+            />
             <AppRoute
               path="/app/event/bookEvent/bookedpoojalist"
               component={BookedpoojaList}
@@ -837,7 +939,6 @@ class AppRouter extends React.Component {
               path="/app/event/bookEvent/viewOnebookedpooja/:id"
               component={ViewOneBookedPooja}
             />
-
             {/* Astrologer */}
             {/* productmanager  */}
             <AppRoute
@@ -845,10 +946,10 @@ class AppRouter extends React.Component {
               component={ProductList}
             />
             <AppRoute
-            path="/appmanagement/Dr-suggest-category"
-            component={DrsuggestCategoryList}
-          />
-          <AppRoute
+              path="/appmanagement/Dr-suggest-category"
+              component={DrsuggestCategoryList}
+            />
+            <AppRoute
               path="/appmanagement/Dr-sub-suggest"
               component={Drsubsuggest}
             />
@@ -856,10 +957,22 @@ class AppRouter extends React.Component {
               path="/appmanagement/Dr-prescription"
               component={DrPrescription}
             />
-            <AppRoute path='/PharmaManagement/category-list' component={Pharmacategorylist}/>
-            <AppRoute path='/PharmaManagement/Medicine-list' component={Medicinelist}/>
-            <AppRoute path='/PharmaManagement/Order-list' component={PharmaOrderlist}/>
-            <AppRoute path='/PharmaManagement/Medicin-stock-list' component={Pharmamedicinlist}/>
+            <AppRoute
+              path="/PharmaManagement/category-list"
+              component={Pharmacategorylist}
+            />
+            {/* <AppRoute
+              path="/PharmaManagement/Medicine-list"
+              component={Medicinelist}
+            /> */}
+            <AppRoute
+              path="/PharmaManagement/Order-list"
+              component={PharmaOrderlist}
+            />
+            <AppRoute
+              path="/PharmaManagement/Medicin-stock-list"
+              component={Pharmamedicinlist}
+            />
             {/*kundli management */}
             <AppRoute
               path="/app/kundlimanage/kundlimatchlist"
@@ -946,27 +1059,32 @@ class AppRouter extends React.Component {
               path="/app/productmanager/product/productList"
               component={ProductList}
             />
-            <AppRoute path="/Category/Add-Category" component={Listcategoryadd} />
+            <AppRoute
+              path="/Category/Add-Category"
+              component={Listcategoryadd}
+            />
             <AppRoute
               path="/app/productmanager/product/addProduct"
               component={AddProduct}
             />
-
+            <AppRoute path="/Edit-Category/:id" component={EditProduct} />
             <AppRoute
-              path="/Edit-Category/:id"
-              component={EditProduct}
+              component={Editsubcategory}
+              path="/Edit-sub-category/:id"
             />
-            <AppRoute component={Editsubcategory} path="/Edit-sub-category/:id"/>
-            <AppRoute
-              path="/viewCategory/:id"
-              component={ViewProduct}
-            />
+            <AppRoute path="/viewCategory/:id" component={ViewProduct} />
             <AppRoute
               path="/appmanagement/category-list"
               component={CategoryList}
             />
-            <AppRoute path='/appmanagement/disease-list' component={diseaselist}/>
-            <AppRoute path="/appmanagement/Subcategory-list" component={SubcategoryList}/>
+            <AppRoute
+              path="/appmanagement/disease-list"
+              component={diseaselist}
+            />
+            <AppRoute
+              path="/appmanagement/Subcategory-list"
+              component={SubcategoryList}
+            />
             <AppRoute
               path="/app/productmanager/category/addCategory"
               component={AddCategory}
@@ -980,18 +1098,12 @@ class AppRouter extends React.Component {
               component={ViewCategory}
             />
             {/* productmanager close  */}
+            <AppRoute path="/userList/doctor-list" component={AstrologerList} />
             <AppRoute
-              path="/userList/doctor-list"
-              component={AstrologerList}
+              path="/app/astrology/astrologerList"
+              component={AstrologerList1}
             />
-            <AppRoute
-            path="/app/astrology/astrologerList"
-            component={AstrologerList1}
-          />
-            <AppRoute
-              path="Add-list"
-              component={AddAstrologer}
-            />
+            <AppRoute path="Add-list" component={AddAstrologer} />
             <AppRoute
               path="/app/astrology/editAstrologer/:id"
               component={EditAstrologer}
@@ -1013,7 +1125,10 @@ class AppRouter extends React.Component {
               path="/app/callmanagement/completecall"
               component={CompleteCall}
             />
-            <AppRoute path='/Businessmanagement/Call-history' component={Callhistorymanagement}/>
+            <AppRoute
+              path="/Businessmanagement/Call-history"
+              component={Callhistorymanagement}
+            />
             <AppRoute
               path="/app/callmanagement/videocall"
               component={Videocall}
@@ -1099,17 +1214,29 @@ class AppRouter extends React.Component {
               path="/app/reviewrating/ratinglist"
               component={RatingList}
             />
-            <AppRoute path='/Ratings/Doctor-rating' component={doctorrating}/>
-            <AppRoute path='/Ratings/Pharma-rating' component={pharmarating}/>
-            <AppRoute path='/Ratings/diagnostics-rating' component={diagnostingsrating}/>
+            <AppRoute path="/Ratings/Doctor-rating" component={doctorrating} />
+            <AppRoute path="/Ratings/Pharma-rating" component={pharmarating} />
+            <AppRoute
+              path="/Ratings/diagnostics-rating"
+              component={diagnostingsrating}
+            />
             {/*chatintakeform  */}
             <AppRoute
               path="/appmanagement/Conversion-list"
               component={ChatInTakeList}
             />
-            <AppRoute path="/Financemanagement/Doctor-earning" component={DoctorEarningList}/>
-            <AppRoute path="/Financemanagement/Diagnostic-earning" component={DiagnosticEarningList}/>
-            <AppRoute path="/Financemanagement/Pharma-earning" component={PharmaEarningList}/>
+            <AppRoute
+              path="/Financemanagement/Doctor-earning"
+              component={DoctorEarningList}
+            />
+            <AppRoute
+              path="/Financemanagement/Diagnostic-earning"
+              component={DiagnosticEarningList}
+            />
+            <AppRoute
+              path="/Financemanagement/Pharma-earning"
+              component={PharmaEarningList}
+            />
             <AppRoute
               path="/app/reviewrating/ratingedit/:id"
               component={RatingEdit}
@@ -1277,9 +1404,18 @@ class AppRouter extends React.Component {
               path="/app/blogmngment/blogCategory/blogCateList"
               component={BlogCateList}
             />
-            <AppRoute path='/Blogmanagement/Category-list' component={Blogcategorylist}/>
-            <AppRoute path='/Blogmanagement/Add-blog-list' component={Addblogcategorylist}/>
-            <AppRoute path='/Blogmanagement/Comments-list' component={Commentlist}/>
+            <AppRoute
+              path="/Blogmanagement/Category-list"
+              component={Blogcategorylist}
+            />
+            <AppRoute
+              path="/Blogmanagement/Add-blog-list"
+              component={Addblogcategorylist}
+            />
+            <AppRoute
+              path="/Blogmanagement/Comments-list"
+              component={Commentlist}
+            />
             <AppRoute
               path="/app/blogmngment/blogCategory/addBlogCate"
               component={AddBlogCate}
@@ -1382,10 +1518,19 @@ class AppRouter extends React.Component {
               path="/app/withdraw/WithdrawRequest"
               component={WithdrawRequest}
             />
-            <AppRoute path='/Withdraw/User-withdraw' component={Userwithdraw}/>
-            <AppRoute path='/Withdraw/Doctor-withdraw' component={Doctorwithdraw}/>
-            <AppRoute path='/withdraw/Pharma-withdraw' component={Pharmawithdraw}/>
-            <AppRoute path='/withdraw/Diagnostics-withdraw' component={Diagnosticswithdraw}/>
+            <AppRoute path="/Withdraw/User-withdraw" component={Userwithdraw} />
+            <AppRoute
+              path="/Withdraw/Doctor-withdraw"
+              component={Doctorwithdraw}
+            />
+            <AppRoute
+              path="/withdraw/Pharma-withdraw"
+              component={Pharmawithdraw}
+            />
+            <AppRoute
+              path="/withdraw/Diagnostics-withdraw"
+              component={Diagnosticswithdraw}
+            />
             {/* Transaction history */}
             <AppRoute
               path="/app/transaction/transactionHistory"
