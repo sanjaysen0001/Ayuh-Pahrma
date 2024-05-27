@@ -15,7 +15,7 @@ import {
 import axiosConfig from "../axiosConfig";
 import { ContextLayout } from "../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
-import {  Eye, Edit,Trash2, ChevronDown } from "react-feather";
+import { Eye, Edit, Trash2, ChevronDown } from "react-feather";
 import "../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../assets/scss/pages/users.scss";
 import { Route } from "react-router-dom";
@@ -49,239 +49,86 @@ class Inventmedical extends React.Component {
 
       {
         headerName: "Available Stock",
-        field: "medicinetype,",
+        field: "availableStock,",
         filter: true,
         width: 180,
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.fullname}</span>
-
+              <span>{params.data?.availableStock}</span>
             </div>
           );
         },
       },
-      // {
-      //   headerName: "Patient Id",
-      //   field: "patientid",
-      //   filter: true,
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div>
-      //         <span>{params.data.walletId}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
+
       {
         headerName: "Capacity Stock",
-        field: "medicinename,",
+        field: "capacityStock",
         filter: true,
         width: 180,
-        // cellRendererFramework: (params) => {
-        //   return (
-        //     <div>
-        //       <span>{params.data.walletId}</span>
-        //     </div>
-        //   );
-        // },
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data?.capacityStock}</span>
+            </div>
+          );
+        },
       },
       {
         headerName: "Required Stock",
-        field: "unit",
+        field: "requiredStock",
         filter: true,
         width: 180,
-        // cellRendererFramework: (params) => {
-        //   return (
-        //     <div>
-        //       <span>{params.data.walletId}</span>
-        //     </div>
-        //   );
-        // },
-      },
-
-      // {
-      //   headerName: "Medicine Image",
-      //   field: "userimg",
-      //   filter: false,
-      //   width: 180,
-      //   setColumnVisible: false,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {params.data.userimg.map((i) => (
-      //           <img
-      //             className=" rounded-circle  mr-3"
-      //             src={i}
-      //             alt="user avatar"
-      //             height="40"
-      //             width="40"
-      //           />
-      //         ))}
-      //       </div>
-      //     );
-      //   },
-      // },
-    //   {
-    //     headerName: "Email ID",
-    //     field: "email	",
-    //     filter: true,
-    //     width: 150,
-    //     cellRendererFramework: (params) => {
-    //       return (
-    //         <div className="d-flex align-items-center cursor-pointer">
-    //           <span>{params.data.email}</span>
-    //         </div>
-    //       );
-    //     },
-    //   },
-    //   {
-    //     headerName: "Phone Number",
-    //     field: "mobile",
-    //     filter: true,
-    //     width: 180,
-    //     cellRendererFramework: (params) => {
-    //       return (
-    //         <div className="d-flex align-items-center cursor-pointer">
-    //           <span>{params.data.mobile}</span>
-    //         </div>
-    //       );
-    //     },
-    //   },
-    {
-      headerName: "Medicine Name",
-      field: "medicinedetails,",
-      filter: true,
-      width: 180,
-      // cellRendererFramework: (params) => {
-      //   return (
-      //     <div className="d-flex align-items-center cursor-pointer">
-      //       <span>{params.data.city}</span>
-      //     </div>
-      //   );
-      // },
-    },
-      {
-        headerName: "Medicine Type",
-        field: "medicinedetails,",
-        filter: true,
-        width: 180,
-        // cellRendererFramework: (params) => {
-        //   return (
-        //     <div className="d-flex align-items-center cursor-pointer">
-        //       <span>{params.data.city}</span>
-        //     </div>
-        //   );
-        // },
-      },
-      // {
-      //   headerName: "Price",
-      //   field: "price	",
-      //   filter: true,
-      //   width: 150,
-      //   // cellRendererFramework: (params) => {
-      //   //   return (
-      //   //     <div className="d-flex align-items-center cursor-pointer">
-      //   //       <span>{params.data.email}</span>
-      //   //     </div>
-      //   //   );
-      //   // },
-      // },
-    //   {
-    //     headerName: "Start Time",
-    //     field: "starttime",
-    //     filter: true,
-    //     width: 150,
-    //     cellRendererFramework: (params) => {
-    //       return (
-    //         <div>
-    //           <span>{params.data?.updatedAt.split("T")[1].split(".")[0]}</span>
-    //         </div>
-    //       );
-    //     },
-    //   },
-    //   {
-    //     headerName: "End Time",
-    //     field: "endtime",
-    //     filter: true,
-    //     width: 150,
-    //     cellRendererFramework: (params) => {
-    //       return (
-    //         <div>
-    //           <span>{params.data?.createdAt.split("T")[1].split(".")[0]}</span>
-    //         </div>
-    //       );
-    //     },
-    //   },
-      // {
-      //   headerName: "Expiry Date",
-      //   field: "expirydate",
-      //   filter: true,
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div>
-      //         <span>{params.data?.dob}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: "Created By",
-      //   field: "createdby",
-      //   filter: true,
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div>
-      //         <span>{params.data?.dob}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
-
-    //   {
-    //     headerName: " Gender",
-    //     field: "gender",
-    //     filter: true,
-    //     width: 150,
-    //     cellRendererFramework: (params) => {
-    //       return (
-    //         <div>
-    //           <span>{params.data?.bithplace}</span>
-    //         </div>
-    //       );
-    //     },
-    //   },
-      // {
-      //   headerName: "Amount",
-      //   field: "amount",
-      //   filter: true,
-      //   width: 150,
-
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div>
-      //         <span>{params.data.amount}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
-      {
-        headerName: "Status",
-        field: "paymentstatus",
-        filter: true,
-        width: 150,
-
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.status}</span>
+              <span>{params.data?.requiredStock}</span>
             </div>
           );
         },
       },
+
+      {
+        headerName: "Medicine Name",
+        field: "medicinename,",
+        filter: true,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data?.medicinename}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Medicine Type",
+        field: "medicinetype",
+        filter: true,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.medicinetype}</span>
+            </div>
+          );
+        },
+      },
+
+      // {
+      //   headerName: "Status",
+      //   field: "paymentstatus",
+      //   filter: true,
+      //   width: 150,
+
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div>
+      //         <span>{params.data.status}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
 
       {
         headerName: "Actions",
@@ -290,7 +137,6 @@ class Inventmedical extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-            {/*
               <Route
                 render={({ history }) => (
                   <Eye
@@ -298,26 +144,28 @@ class Inventmedical extends React.Component {
                     size="25px"
                     color="green"
                     onClick={() =>
-                      history.push(`/app/user/viewUser/${params.data._id}`)
+                      history.push(
+                        `/Pharmapages/ViewInventory/${params.data._id}`
+                      )
                     }
                   />
                 )}
               />
-               */}
-
 
               <Route
-              render={({ history }) => (
-                <Edit
-                  className="mr-50"
-                  size="25px"
-                  color="blue"
-                  onClick={() =>
-                    history.push(`/Pending-report-rist/Edit-report/${params.data._id}`)
-                  }
-                />
-              )}
-            />
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/Pharmapages/EditInvetory/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              />
 
               <Trash2
                 className="mr-50"
@@ -336,7 +184,7 @@ class Inventmedical extends React.Component {
     ],
   };
   async componentDidMount() {
-    await axiosConfig.get(`/admin/alluser`).then((response) => {
+    await axiosConfig.get(`/medicalinventery/medicalall`).then((response) => {
       let rowData = response.data.data;
       console.log(rowData);
       this.setState({ rowData });
@@ -357,7 +205,7 @@ class Inventmedical extends React.Component {
     ).then((value) => {
       switch (value) {
         case "delete":
-          axiosConfig.get(`/admin/dltuser/${id}`).then(
+          axiosConfig.delete(`/medicalinventery/medicaldelete/${id}`).then(
             (response) => {
               this.componentDidMount();
               console.log(response);
@@ -399,24 +247,21 @@ class Inventmedical extends React.Component {
       console.log(rowData),
       (
         <div>
-         <div>
-         <h2>Medical Inventery </h2>
-         </div>
+          <div>
+            <h2>Medical Inventery </h2>
+          </div>
           <Row className="app-user-list">
-            <Col sm="12">
-            </Col>
+            <Col sm="12"></Col>
             <Col sm="12">
               <Card>
                 <CardHeader>
-                <Col>
+                  <Col>
                     <Route
                       render={({ history }) => (
                         <Button
                           className=" btn btn-success float-right"
                           onClick={() =>
-                            history.push(
-                              "/Pharmapages/inventmedicalform"
-                            )
+                            history.push("/Pharmapages/inventmedicalform")
                           }
                         >
                           Add

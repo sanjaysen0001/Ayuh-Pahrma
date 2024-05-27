@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {
   Row,
   Col,
@@ -14,8 +14,9 @@ import {
 import swal from "sweetalert";
 import axiosConfig from "../axiosConfig";
 
-const AddMedicine = () => {
+const ViewMedicine = () => {
   const history = useHistory();
+  const Params = useParams();
 
   const [data, setData] = useState({
     medicineType: "",
@@ -24,12 +25,12 @@ const AddMedicine = () => {
     quantity: "",
     medicineDetails: "",
     price: "",
-    // image: "",
+    image: "",
     expiryDate: "",
     status: "",
   });
-  const [imagefile, setImageFile] = useState(null);
-  const [categoryList, setCategoryList] = useState([]);
+  // const [categoryList, setCategoryList] = useState();
+  const [viewMedicine, setViewMedicine] = useState("");
 
   const {
     medicineType,
@@ -43,8 +44,11 @@ const AddMedicine = () => {
   } = data;
 
   useEffect(() => {
-    axiosConfig.get(`/pharma-category/view-category`).then((response) => {
-      setCategoryList(response.data.Category);
+    console.log(Params.id);
+    axiosConfig.get(`/medicine/fetchbyid/${Params?.id}`).then((response) => {
+      console.log(response.data.data.expiredate);
+      setViewMedicine(response.data.data);
+      // setCategoryList(response.data.Category);
     });
   }, []);
   const changeHandler = (e) => {
@@ -52,37 +56,33 @@ const AddMedicine = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleImage = (e) => {
-    console.log(e.target.files[0]);
-    setImageFile(e.target.files[0]);
-  };
-  const submitHandler = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("medicinetype", data?.medicineType);
-    formData.append("medicinename", data?.medicineName);
-    formData.append("unit", data?.unit);
-    formData.append("quantity", data?.quantity);
-    formData.append("medicinedetails", data?.medicineDetails);
-    formData.append("price", data?.price);
-    formData.append("expiredate", data?.expiryDate);
-    formData.append("status", data?.status);
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append("medicinetype", data?.medicineType);
+  //   formData.append("medicinename", data?.medicineName);
+  //   formData.append("unit", data?.unit);
+  //   formData.append("quantity", data?.quantity);
+  //   formData.append("medicinedetails", data?.medicineDetails);
+  //   formData.append("price", data?.price);
+  //   formData.append("expiredate", data?.expiryDate);
+  //   formData.append("status", data?.status);
 
-    if (imagefile != null) {
-      formData.append("image", imagefile);
-    }
-    axiosConfig
-      .post(`/medicine/add`, formData)
-      .then((response) => {
-        console.log(response.data.message);
-        swal("Success!", "Medicine added successfully!", "success");
-        // history.goBack();
-      })
-      .catch((error) => {
-        swal("Error!", "Something went wrong!", "error");
-        console.log(error.response);
-      });
-  };
+  //   if (data?.image != null) {
+  //     formData.append("image", data?.image);
+  //   }
+  //   axiosConfig
+  //     .post(`/medicine/add`, data)
+  //     .then((response) => {
+  //       console.log(response.data.message);
+  //       swal("Success!", "Medicine added successfully!", "success");
+  //       history.goBack();
+  //     })
+  //     .catch((error) => {
+  //       swal("Error!", "Something went wrong!", "error");
+  //       console.log(error.response);
+  //     });
+  // };
 
   return (
     <React.Fragment>
@@ -91,7 +91,7 @@ const AddMedicine = () => {
           <Col sm="12" md="10" lg="10">
             <Card className="bg-authentication rounded-0 mb-0">
               <CardHeader>
-                <h4 className="mb-3">Add Medicine</h4>
+                <h4 className="mb-3">View Medicine</h4>
                 <Button.Ripple
                   onClick={() => history.goBack()}
                   outline
@@ -100,10 +100,10 @@ const AddMedicine = () => {
                   Back
                 </Button.Ripple>
               </CardHeader>
-              <Form className="m-1" onSubmit={submitHandler}>
-                {/* <CardTitle>
-                  <h4 className="mb-3">Add Medicine</h4>
-                </CardTitle> */}
+              <Form
+                className="m-1"
+                // onSubmit={submitHandler}
+              >
                 <Row>
                   <Col md="6">
                     <Label for="medicineType">Medicine Type</Label>
@@ -111,15 +111,12 @@ const AddMedicine = () => {
                       type="select"
                       id="medicineType"
                       name="medicineType"
-                      value={data?.medicineType}
+                      value={viewMedicine?.medicinetype}
                       onChange={changeHandler}
                     >
-                      <option value="">Select medicine type</option>
-                      {categoryList?.map((list, ind) => (
-                        <option value={list?.categoryName}>
-                          {list?.categoryName}
-                        </option>
-                      ))}
+                      <option value={viewMedicine.medicinetype}>
+                        {viewMedicine.medicinetype}
+                      </option>
                     </Input>
                   </Col>
                   <Col md="6">
@@ -129,7 +126,7 @@ const AddMedicine = () => {
                       id="medicineName"
                       name="medicineName"
                       placeholder="Enter medicine name"
-                      value={data?.medicineName}
+                      value={viewMedicine?.medicinename}
                       onChange={changeHandler}
                     />
                   </Col>
@@ -140,7 +137,7 @@ const AddMedicine = () => {
                       id="unit"
                       name="unit"
                       placeholder="Enter unit"
-                      value={data?.unit}
+                      value={viewMedicine?.unit}
                       onChange={changeHandler}
                     />
                   </Col>
@@ -151,7 +148,7 @@ const AddMedicine = () => {
                       id="quantity"
                       name="quantity"
                       placeholder="Enter Quantity"
-                      value={data?.quantity}
+                      value={viewMedicine?.quantity}
                       onChange={changeHandler}
                     />
                   </Col>
@@ -163,19 +160,25 @@ const AddMedicine = () => {
                       id="price"
                       name="price"
                       placeholder="Enter price"
-                      value={data?.price}
+                      value={viewMedicine?.price}
                       y
                       onChange={changeHandler}
                     />
                   </Col>
                   <Col className="mt-1" md="6">
                     <Label for="image">Image</Label>
-                    <Input
+                    <img
+                      src={viewMedicine?.image}
+                      alt="Image"
+                      width={100}
+                      height={100}
+                    />
+                    {/* <Input
                       type="file"
                       id="image"
                       name="image"
-                      onChange={handleImage}
-                    />
+                      onChange={changeHandler}
+                    /> */}
                   </Col>
                   <Col className="mt-1" md="6">
                     <Label for="expiryDate">Expiry Date</Label>
@@ -183,7 +186,7 @@ const AddMedicine = () => {
                       type="date"
                       id="expiryDate"
                       name="expiryDate"
-                      value={data?.expiryDate}
+                      value={viewMedicine?.expiredate}
                       onChange={changeHandler}
                     />
                   </Col>
@@ -194,7 +197,7 @@ const AddMedicine = () => {
                       id="medicineDetails"
                       name="medicineDetails"
                       placeholder="Enter medicine details"
-                      value={data?.medicineDetails}
+                      value={viewMedicine.medicinedetails}
                       onChange={changeHandler}
                     />
                   </Col>
@@ -235,4 +238,4 @@ const AddMedicine = () => {
   );
 };
 
-export default AddMedicine;
+export default ViewMedicine;
